@@ -11,7 +11,7 @@
                 ajax: {
                     url: '{!! url()->current() !!}'
                 },
-                column: [{
+                columns: [{
                         data: 'id',
                         name: 'id',
                         width: '5%'

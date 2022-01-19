@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -18,7 +20,7 @@ class ProductController extends Controller
         if (request()->ajax()) {
             $query = Product::query();
             return DataTables::of($query)
-                ->editColumn('price', function ($item) {
+                ->editColumn('price', function($item) {
                     return number_format($item->price);
                 })
                 ->make();
@@ -43,9 +45,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+
+        Product::create($data);
+
+        return redirect()->route('dashboard.product.index');
     }
 
     /**

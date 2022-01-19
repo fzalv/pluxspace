@@ -17,7 +17,7 @@
                         <p>
                         <ul>
                             @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
+                            <li>{{ $error }}</li>
                             @endforeach
                         </ul>
                         </p>
@@ -29,7 +29,7 @@
                     <div class="flex flex-wrap -mx-3 mb-6 space-y-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Nama</label>
-                            <input type="text" value="{{old('name')}}" name="name" placeholder="Nama Produk" class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <input type="text" value="{{ old('name') }}" name="name" placeholder="Nama Produk" class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         </div>
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description</label>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Harga</label>
-                            <input type="number" value="{{old('price')}}" name="name" placeholder="Harga Produk" class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <input type="number" value="{{ old('price') }}" name="price" placeholder="Harga Produk" class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         </div>
                         <div class="w-full px-3">
                             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
