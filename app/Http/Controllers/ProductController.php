@@ -20,9 +20,17 @@ class ProductController extends Controller
         if (request()->ajax()) {
             $query = Product::query();
             return DataTables::of($query)
-                ->editColumn('price', function($item) {
+                ->addColumn('action', function ($item) {
+                    return '
+                        <a href="' . route('dashboard.product.edit', $item->id) . '">
+                            Edit
+                        </a>
+                    ';
+                })
+                ->editColumn('price', function ($item) {
                     return number_format($item->price);
                 })
+                ->rawColumns(['action'])
                 ->make();
         }
 
@@ -72,9 +80,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('pages.dashboard.product.edit', [
+            'item' => $product
+        ]);
     }
 
     /**
