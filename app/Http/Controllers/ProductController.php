@@ -22,9 +22,16 @@ class ProductController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                        <a href="' . route('dashboard.product.edit', $item->id) . '">
+                        <a href="' . route('dashboard.product.edit', $item->id) . '" class="">
                             Edit
                         </a>
+
+                        <form class="inline-block" action="' . route('dashboard.product.destroy', $item->id) . '" method="POST">
+                            <button class="bg-red-600 text-white rounded-md px-2 py-1 m-2">
+                                Delete
+                            </button>
+                        ' . method_field('delete') . csrf_field() . '
+                        </form>
                     ';
                 })
                 ->editColumn('price', function ($item) {
@@ -108,8 +115,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('dashboard.product.index');
     }
 }
