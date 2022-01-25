@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductGalleryRequest;
 use App\Models\Product;
 use App\Models\ProductGallery;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class ProductGalleryController extends Controller
                     ';
                 })
                 ->editColumn('url', function ($item) {
-                    return '<img style="max-width:150pxW" src="' . Storage::url($item->url) . '"/>';
+                    return '<img style="max-width: 150px" src="' . Storage::url($item->url) . '"/>';
                 })
                 ->editColumn('is_featured', function ($item) {
                     return $item->is_featured ? 'Yes' : 'No';
@@ -59,9 +60,22 @@ class ProductGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductGalleryRequest $request, Product $product)
     {
-        //
+        $files = $request->file('files');
+
+        if ($request->hasFile('files')) {
+
+            foreach ($files as $file) {
+                $path = $file->store('public/gallery');
+
+                ProductGallery::create([
+                    'products_id' => $product->id,
+                    'url' => $path
+                ]);
+            }
+        }
+        return redirect()->route('dashboard.product.gallery.index', $product->id);
     }
 
     /**
