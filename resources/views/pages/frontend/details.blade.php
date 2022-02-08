@@ -23,8 +23,8 @@
 <section class="container mx-auto">
     <div class="flex flex-wrap my-4 md:my-12">
         <div class="w-full md:hidden px-4">
-            <h2 class="text-5xl font-semibold">Chair Thatty</h2>
-            <span class="text-xl">IDR 12.000.000</span>
+            <h2 class="text-5xl font-semibold">{{ $product->name }}</h2>
+            <span class="text-xl">IDR {{ number_format($product->price) }}</span>
         </div>
         <div class="flex-1">
             <div class="slider">
@@ -46,8 +46,8 @@
             </div>
         </div>
         <div class="flex-1 px-4 md:p-6">
-            <h2 class="text-5xl font-semibold">Chair Thatty</h2>
-            <p class="text-xl">IDR 12.000.000</p>
+            <h2 class="text-5xl font-semibold">{{ $product->name }}</h2>
+            <p class="text-xl">IDR {{ number_format($product->price) }}</p>
 
             <a href="cart.html" class="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex"><svg class="fill-current mr-3" width="26" height="24" viewBox="0 0 26 24">
                     <path d="M10.8754 18.7312C9.61762 18.7312 8.59436 19.7115 8.59436 20.9164C8.59436 22.1214 9.61762 23.1017 10.8754 23.1017C12.1331 23.1017 13.1564 22.1214 13.1564 20.9164C13.1563 19.7115 12.1331 18.7312 10.8754 18.7312ZM10.8754 21.8814C10.3199 21.8814 9.86796 21.4485 9.86796 20.9163C9.86796 20.3842 10.3199 19.9512 10.8754 19.9512C11.4308 19.9512 11.8828 20.3842 11.8828 20.9163C11.8828 21.4486 11.4308 21.8814 10.8754 21.8814Z" />
@@ -61,14 +61,7 @@
 
             <h6 class="text-xl font-semibold mb-4">About the product</h6>
             <p class="text-xl leading-7 mb-6">
-                Tailored to a level of perfection synonymous with that of a Savile
-                Row suit and with understated quality in the detail, Jetty has been
-                influenced by timeless 1950s style.
-            </p>
-            <p class="text-xl leading-7">
-                Providing a subtle nod to the past, Jetty also provides a perfect
-                solution for the way we work today. A comprehensive product family,
-                Jetty features a variety of elegant chairs and sofas.
+                {!! $product->description !!}
             </p>
         </div>
     </div>
